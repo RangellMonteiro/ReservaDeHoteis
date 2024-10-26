@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Hotel extends Hoteis {
+public class Hotel {
     private String nome;
     private String endereco;
     private int classificacao; 
@@ -17,6 +17,7 @@ public class Hotel extends Hoteis {
         this.classificacao = classificacao;
         this.quartos = new ArrayList<>();
     }
+    
 
     // Métodos get e set
     public String getNome() {

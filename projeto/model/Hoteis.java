@@ -16,25 +16,27 @@ public class Hoteis {
 
     public Hotel buscarHotelPorNome(String nome) {
         for (Hotel hotel : hoteis) {
-            if (hotel.getDetalhes().contains(nome)) {
-                return hotel;
+            if (hotel.getNome().equals(nome)) {
+            	System.out.println(hotel.getDetalhes());
             }
         }
         return null;
     }
 
     public List<Hotel> filtrarHoteisPorClassificacao(int classificacaoMinima) {
-        List<Hotel > filtrados = new ArrayList<>();
         for (Hotel hotel : hoteis) {
             if (hotel.getClassificacao() >= classificacaoMinima) {
-                filtrados.add(hotel);
+                System.out.println(hotel.getDetalhes());
             }
         }
-        return filtrados;
+        return null;
     }
 
-    public List<Hotel> listarTodos() {
-        return hoteis;
+    public void listarTodos() {
+        for (Hotel hotel : hoteis) {
+        	System.out.println(hotel.getDetalhes());
+
+        };
     }
 
     public List<Hotel> getHoteis() {
