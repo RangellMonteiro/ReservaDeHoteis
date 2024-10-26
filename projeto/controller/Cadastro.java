@@ -29,10 +29,5 @@ public class Cadastro {
 			usuariosDados.put(email,senha);
 		}
 		
-		for (String i : usuariosDados.keySet()) {
-			  System.out.println("key: " + i + " value: " + usuariosDados.get(i));
-			}
-		
-		
 	}
 }
