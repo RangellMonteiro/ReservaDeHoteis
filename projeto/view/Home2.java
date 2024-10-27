@@ -21,6 +21,7 @@ public class Home2 {
 			String nomeHotel = scanner.nextLine();
 			hoteis.buscarHotelPorNome(nomeHotel);
 		}else if(escolha.equals("2")) {
+			System.out.println("Filtrar hoteis");
 			hoteis.filtrarHoteisPorClassificacao(4);
 		}else if(escolha.equals("3")) {
 			hoteis.listarTodos();

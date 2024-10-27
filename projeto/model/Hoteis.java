@@ -31,12 +31,13 @@ public class Hoteis {
         }
         return null;
     }
+    
 
     public void listarTodos() {
         for (Hotel hotel : hoteis) {
         	System.out.println(hotel.getDetalhes());
 
-        };
+        }
     }
 
     public List<Hotel> getHoteis() {

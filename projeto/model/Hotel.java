@@ -43,6 +43,7 @@ public class Hotel {
     public void setClassificacao(int classificacao) {
         this.classificacao = classificacao;
     }
+    
 
     public void adicionarQuarto(Quarto quarto) {
         quartos.add(quarto);
