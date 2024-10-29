@@ -12,6 +12,7 @@ public class Home2 {
 		Hotel hotel2 = new Hotel("São Cristo", "Rua 2 de B", 4);
 		Hotel hotel3 = new Hotel("São Pedro", "Rua 3 de C", 5);
 		Hoteis hoteis = new Hoteis();
+		
 		hoteis.adicionarHotel(hotel);
 		hoteis.adicionarHotel(hotel2);
 		hoteis.adicionarHotel(hotel3);
@@ -26,6 +27,10 @@ public class Home2 {
 		}else if(escolha.equals("3")) {
 			hoteis.listarTodos();
 		}
+		
+		SistemaReserva sistemaReserva = new SistemaReserva();
+		sistemaReserva.iniciar();
 		scanner.close();
 	}
+	
 }
