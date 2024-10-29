@@ -1,6 +1,7 @@
 package view;
 import java.util.Scanner;
 import model.Hotel;
+import model.SistemaReserva;
 import model.Hoteis;
 
 public class Home2 {
