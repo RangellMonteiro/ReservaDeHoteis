@@ -11,7 +11,7 @@ public class Reserva {
     private double valorTotal;
     private boolean confirmada;
 
-    public Reserva(String codigo, Date dataCheckIn, Date dataCheckOut, Quarto quarto, Cliente cliente) {
+    public Reserva(String codigo, Date dataCheckIn, Date dataCheckOut, Quarto quarto) {
         this.codigo = codigo;
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
@@ -71,9 +71,8 @@ public class Reserva {
     public String getDetalhes() {
         String estado = confirmada ? "Confirmada" : "Pendente";
         return String.format(
-                "Código: %s, Cliente: %s, Quarto: %s, Data Check-in: %s, Data Check-out: %s, Valor Total: %.2f, Estado: %s",
+                "Código: %s, Quarto: %s, Data Check-in: %s, Data Check-out: %s, Valor Total: %.2f, Estado: %s",
                 codigo,
-                cliente.getNome(),
                 quarto.getNumero() + " (" + quarto.getTipo() + ")",
                 dataCheckIn,
                 dataCheckOut,
