@@ -11,7 +11,7 @@ public class Reserva {
     private double valorTotal;
     private boolean confirmada;
 
-    public Reserva(String codigo, Date dataCheckIn, Date dataCheckOut, Quarto quarto) {
+    public Reserva(String codigo, Date dataCheckIn, Date dataCheckOut, Quarto quarto, Cliente cliente) {
         this.codigo = codigo;
         this.dataCheckIn = dataCheckIn;
         this.dataCheckOut = dataCheckOut;
