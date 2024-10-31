@@ -1,6 +1,7 @@
 package controller;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class Login extends Cadastro {
     String emailLogin;
@@ -9,14 +10,24 @@ public class Login extends Cadastro {
 
     public Login() {
         usuariosDados = new HashMap<>();
-        usuariosDados.put("emailadm", "adm123");
-        usuariosDados.put("emailteste", "teste123");
+        usuariosDados.put("emailadm@domain.com", "adm123");
+        usuariosDados.put("emailteste@domain.com", "teste123");
+    }
+
+    private boolean validarEmail(String email) {
+        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        return Pattern.matches(regex, email);
     }
 
     public void logar() {
         System.out.println("Digite o email para logar:");
         emailLogin = scanner.nextLine();
-        
+
+        if (!validarEmail(emailLogin)) {
+            System.out.println("Erro: Formato de email inválido.");
+            return;
+        }
+
         if (!usuariosDados.containsKey(emailLogin)) {
             System.out.println("Erro: Email não encontrado.");
             return;
@@ -26,7 +37,7 @@ public class Login extends Cadastro {
         senhaLogin = scanner.nextLine();
 
         if (usuariosDados.get(emailLogin).equals(senhaLogin)) {
-            if (emailLogin.equals("emailadm")) {
+            if (emailLogin.equals("emailadm@domain.com")) {
                 System.out.println("Usuário administrador logado com sucesso.");
             } else {
                 System.out.println("Usuário logado com sucesso.");
