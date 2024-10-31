@@ -17,12 +17,12 @@ public class ReservaController {
     private List<Quarto> quartos;
     private List<Cliente> clientes;
     Scanner scanner = new Scanner(System.in);
+    SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 
     public ReservaController() {
         this.reservas = new ArrayList<>();
         this.quartos = new ArrayList<>();
         this.clientes = new ArrayList<>();
-        this.scanner = new Scanner(System.in);
         inicializarQuartos();
         inicializarClientes();
     }
@@ -46,9 +46,8 @@ public class ReservaController {
             System.out.println("4. Visualizar reservas");
             System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
-            
+
             String opcao = scanner.nextLine();
-         
 
             switch (opcao) {
                 case "1":
@@ -107,12 +106,24 @@ public class ReservaController {
 
         String codigoReserva = "R" + (reservas.size() + 1);
         Reserva reserva = new Reserva(codigoReserva, dataCheckIn, dataCheckOut, quartoEscolhido, clienteEscolhido);
-        
+
         if (reserva.validarDatas()) {
+            // Calcula o valor total da reserva e exibe
+            double valorTotal = calcularValorDiarias(quartoEscolhido.getPrecoDiaria(), dataCheckIn, dataCheckOut);
+            reserva.setValorTotal(valorTotal);
+
             reservas.add(reserva);
             clienteEscolhido.adicionarReserva(reserva);
             System.out.println("Reserva criada: " + reserva.getDetalhes());
+        } else {
+            System.out.println("As datas de reserva são inválidas.");
         }
+    }
+
+    private double calcularValorDiarias(double precoDiaria, Date dataCheckIn, Date dataCheckOut) {
+        long diferencaEmMillis = dataCheckOut.getTime() - dataCheckIn.getTime();
+        long diferencaEmDias = diferencaEmMillis / (1000 * 60 * 60 * 24); // Convertendo de millis para dias
+        return precoDiaria * diferencaEmDias;
     }
 
     private void confirmarReserva() {
@@ -123,6 +134,7 @@ public class ReservaController {
         if (reserva != null) {
             try {
                 reserva.confirmarReserva();
+                System.out.println("Reserva confirmada: " + reserva.getDetalhes());
             } catch (Exception e) {
                 System.out.println("Erro ao confirmar reserva: " + e.getMessage());
             }
@@ -140,6 +152,7 @@ public class ReservaController {
             try {
                 reserva.getCliente().cancelarReserva(reserva);
                 reserva.cancelarReserva();
+                System.out.println("Reserva cancelada: " + reserva.getDetalhes());
             } catch (Exception e) {
                 System.out.println("Erro ao cancelar reserva: " + e.getMessage());
             }
@@ -160,7 +173,6 @@ public class ReservaController {
     }
 
     private Date lerData() {
-        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         while (true) {
             try {
                 return formatoData.parse(scanner.nextLine());
