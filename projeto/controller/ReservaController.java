@@ -72,19 +72,6 @@ public class ReservaController {
     }
 
     private void criarReserva() {
-        System.out.println("Escolha um cliente:");
-        for (int i = 0; i < clientes.size(); i++) {
-            System.out.println((i + 1) + ". " + clientes.get(i).getDetalhes());
-        }
-        int opcaoCliente = scanner.nextInt();
-        scanner.nextLine();
-
-        if (opcaoCliente < 1 || opcaoCliente > clientes.size()) {
-            System.out.println("Cliente inválido.");
-            return;
-        }
-        Cliente clienteEscolhido = clientes.get(opcaoCliente - 1);
-
         System.out.println("Escolha um quarto:");
         for (int i = 0; i < quartos.size(); i++) {
             System.out.println((i + 1) + ". " + quartos.get(i).getDetalhes());
@@ -105,7 +92,7 @@ public class ReservaController {
         Date dataCheckOut = lerData();
 
         String codigoReserva = "R" + (reservas.size() + 1);
-        Reserva reserva = new Reserva(codigoReserva, dataCheckIn, dataCheckOut, quartoEscolhido, clienteEscolhido);
+        Reserva reserva = new Reserva(codigoReserva, dataCheckIn, dataCheckOut, quartoEscolhido);
 
         if (reserva.validarDatas()) {
             // Calcula o valor total da reserva e exibe
